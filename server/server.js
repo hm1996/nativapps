@@ -15,9 +15,9 @@ const servidorDB = process.env.DB;
 
 mongoose.connect(servidorDB, (err, res) => {
     if(err){
-        console.log("No se pudo conectar la DB");
+        console.log('No se pudo conectar la DB', err);
     }else{
-        console.log("Conexion DB realizada");
+        console.log('Conexion DB realizada');
     }
 });
 
