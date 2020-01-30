@@ -1,0 +1,29 @@
+{
+  "name": "nativapps",
+  "version": "1.0.0",
+  "description": "Reto de programación Back-End Node JS",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hm1996/nativapps.git"
+  },
+  "keywords": [
+    "test",
+    "interview",
+    "rest",
+    "nodejs"
+  ],
+  "author": "Humar Moreno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hm1996/nativapps/issues"
+  },
+  "homepage": "https://github.com/hm1996/nativapps#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
