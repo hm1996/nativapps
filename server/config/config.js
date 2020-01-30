@@ -1,1 +1,1 @@
-process.env.PUERTO = process.env.PUERTO || 1996;
+process.env.PORT = process.env.PORT || 1996;

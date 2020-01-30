@@ -6,7 +6,7 @@ const app = express();
 //app.use(express.json());
 //app.use(express.urlencoded({extended: true}));
 
-const puerto = process.env.PUERTO;
+const puerto = process.env.PORT;
 
 
 // CRUD estudiantes
