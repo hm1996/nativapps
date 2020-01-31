@@ -13,9 +13,9 @@ app.use(require('./routes/estudiantes'));
 const puerto = process.env.PORT;
 const servidorDB = process.env.DB;
 
-mongoose.connect(servidorDB, (err, res) => {
+mongoose.connect('mongodb+srv://nativapps:Nativapps2020@retonativapps-t7jl7.mongodb.net/nativapps?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true}, (err, res) => {
     if(err){
-        console.log('No se pudo conectar la DB', err);
+        console.log('No se pudo conectar la DB', err, servidorDB);
     }else{
         console.log('Conexion DB realizada');
     }

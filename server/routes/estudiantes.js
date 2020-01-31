@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 
 const Estudiante = require('../models/estudiantes');
+const Curso = require('../models/cursos');
 
 app.post('/estudiantes', (req, res) => {
     let body = req.body;
@@ -24,7 +25,34 @@ app.post('/estudiantes', (req, res) => {
             data: field
         });
     });
+});
 
+app.put('/estudiantes/agregarCurso/:id', (req, res) => {
+    let id = req.params.id;
+    let body = _.pick(req.body, ['idCurso']);
+
+    Curso.findByIdAndUpdate(body.idCurso, { $inc: { views: 1 }}, (err, field) => {
+        if(err){ 
+            return res.status(400).json({
+                status: 400,
+                data: err
+            });
+        }
+    });
+
+    Estudiante.findByIdAndUpdate(id, {$push: { cursos: id }}, (err, field) => {
+        if(err){ 
+            return res.status(400).json({
+                status: 400,
+                data: err
+            });
+        }
+        
+        return res.json({
+            status: 200,
+            data: field
+        });
+    });
 });
 
 app.get('/estudiantes/:id', (req, res) => {
@@ -63,6 +91,28 @@ app.get('/estudiantes', (req, res) => {
                 status: 200,
                 data: field
             })
+    });
+});
+
+app.put('/estudiantes/:id', (req, res) => {
+    let id = req.params.id;
+    let body = _.pick(req.body, ['nombre', 'apellido', 'correo', 'cursos']);
+
+    Estudiante.findByIdAndUpdate(id, body, {
+        new: true,
+        runValidators: true
+    }, (err, field) => {
+        if(err){ 
+            return res.status(400).json({
+                status: 400,
+                data: err
+            });
+        }
+        
+        return res.json({
+            status: 200,
+            data: field
+        });
     });
 });
 

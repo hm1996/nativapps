@@ -66,6 +66,24 @@ app.get('/cursos', (req, res) => {
     });
 });
 
+app.get('/cursos/top', (req, res) => {
+    Curso.find({})
+        .sort('numeroEstudiantes', -1)
+        .limit(3)
+        .exec((err, field) => {
+            if(err){ 
+                return res.status(400).json({
+                    status: 400,
+                    data: err
+                });
+            }
+            return res.json({
+                status: 200,
+                data: field
+            })
+    });
+});
+
 app.put('/cursos/:id', (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'horario', 'fechaInicio', 'fechaFin']);
