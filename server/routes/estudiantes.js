@@ -31,7 +31,7 @@ app.put('/estudiantes/agregarCurso/:id', (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['idCurso']);
 
-    Curso.findByIdAndUpdate(body.idCurso, { $inc: { views: 1 }}, (err, field) => {
+    Curso.findByIdAndUpdate(body.idCurso, { $inc: { numeroEstudiantes: 1 }}, (err, field) => {
         if(err){ 
             return res.status(400).json({
                 status: 400,
