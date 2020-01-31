@@ -14,6 +14,7 @@ let cursoSchema = new Schema({
     },
     horario: {
         type: String,
+        // Solo un curso en ese horario
         unique: true,
         enum: valoresHorario,
         required: [true, 'El horario es obligatorio']
