@@ -31,6 +31,13 @@ app.put('/estudiantes/agregarCurso/:id', (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['idCurso']);
 
+    if(body.idCurso == undefined){
+        return res.status(400).json({
+            status: 400,
+            data: 'La propiedad idCruso es requerida'
+        });
+    }
+
     Curso.findByIdAndUpdate(body.idCurso, { $inc: { numeroEstudiantes: 1 }}, (err, field) => {
         if(err){ 
             return res.status(400).json({
@@ -40,7 +47,7 @@ app.put('/estudiantes/agregarCurso/:id', (req, res) => {
         }
     });
 
-    Estudiante.findByIdAndUpdate(id, {$push: { cursos: id }}, (err, field) => {
+    Estudiante.findByIdAndUpdate({id: id, $nin: {cursos: body.idCurso}}, {$push: { cursos: body.idCurso }}, (err, field) => {
         if(err){ 
             return res.status(400).json({
                 status: 400,
